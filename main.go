@@ -15,4 +15,6 @@ func main() {
 	router.Init(app)
 
 	app.Start(":8080")
+
+	// tambahkan swagger
 }
