@@ -10,6 +10,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// CreateSubTodo godoc
+// @Summary Create SubTodo
+// @Description Create SubTodo
+// @Tags SubTodo
+// @Accept json
+// @Produce json
+// @Param SubTodo body reqres.SubTodoRequest true "Create SubTodo"
+// @Success 200
+// @Router /v1/subtodo [post]
 func CreateSubTodo(c echo.Context) error {
 	var input reqres.SubTodoRequest
 	if err := c.Bind(&input); err != nil {
@@ -28,6 +37,14 @@ func CreateSubTodo(c echo.Context) error {
 	})
 }
 
+// GetSubTodos godoc
+// @Summary Get SubTodos
+// @Description Get SubTodos
+// @Tags SubTodo
+// @Accept json
+// @Produce json
+// @Success 200
+// @Router /v1/subtodo [get]
 func GetSubTodos(c echo.Context) error {
 	data, err := repository.GetSubTodos()
 	if err != nil {
@@ -41,6 +58,14 @@ func GetSubTodos(c echo.Context) error {
 	})
 }
 
+// GetSubTodoByID godoc
+// @Summary Get SubTodoByID
+// @Description Get SubTodoByID
+// @Tags SubTodo
+// @Accept json
+// @Produce json
+// @Success 200
+// @Router /v1/subtodo/{id} [get]
 func GetSubTodoByID(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data, err := repository.GetSubTodoByID(id)
@@ -55,6 +80,16 @@ func GetSubTodoByID(c echo.Context) error {
 	})
 }
 
+// UpdateSubTodoByID godoc
+// @Summary Update SubTodoByID
+// @Description Update SubTodoByID
+// @Tags SubTodo
+// @Accept json
+// @Produce json
+// @Param id path int true "SubTodo ID"
+// @Param SubTodo body reqres.SubTodoRequest true "Update SubTodo"
+// @Success 200
+// @Router /v1/subtodo/{id} [put]
 func UpdateSubTodoByID(c echo.Context) error {
 	var input reqres.SubTodoRequest
 	if err := c.Bind(&input); err != nil {
@@ -99,6 +134,15 @@ func UpdateSubTodoByID(c echo.Context) error {
 	})
 }
 
+// DeleteSubTodoByID godoc
+// @Summary Delete SubTodoByID
+// @Description Delete SubTodoByID
+// @Tags SubTodo
+// @Accept json
+// @Produce json
+// @Param id path int true "SubTodo ID"
+// @Success 200
+// @Router /v1/subtodo/{id} [delete]
 func DeleteSubTodoByID(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data, err := repository.GetSubTodoByIDPlain(id)

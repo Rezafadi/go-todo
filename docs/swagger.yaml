@@ -1,0 +1,213 @@
+definitions:
+  reqres.SubTodoRequest:
+    properties:
+      description:
+        type: string
+      image:
+        items:
+          type: string
+        type: array
+      status:
+        type: integer
+      title:
+        type: string
+      todo_id:
+        type: integer
+    type: object
+  reqres.TodoRequest:
+    properties:
+      description:
+        type: string
+      image:
+        items:
+          type: string
+        type: array
+      status:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/subtodo:
+    get:
+      consumes:
+      - application/json
+      description: Get SubTodos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get SubTodos
+      tags:
+      - SubTodo
+    post:
+      consumes:
+      - application/json
+      description: Create SubTodo
+      parameters:
+      - description: Create SubTodo
+        in: body
+        name: SubTodo
+        required: true
+        schema:
+          $ref: '#/definitions/reqres.SubTodoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create SubTodo
+      tags:
+      - SubTodo
+  /v1/subtodo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete SubTodoByID
+      parameters:
+      - description: SubTodo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete SubTodoByID
+      tags:
+      - SubTodo
+    get:
+      consumes:
+      - application/json
+      description: Get SubTodoByID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get SubTodoByID
+      tags:
+      - SubTodo
+    put:
+      consumes:
+      - application/json
+      description: Update SubTodoByID
+      parameters:
+      - description: SubTodo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update SubTodo
+        in: body
+        name: SubTodo
+        required: true
+        schema:
+          $ref: '#/definitions/reqres.SubTodoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update SubTodoByID
+      tags:
+      - SubTodo
+  /v1/todo:
+    get:
+      consumes:
+      - application/json
+      description: Get Todos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Todos
+      tags:
+      - Todo
+    post:
+      consumes:
+      - application/json
+      description: Create Todo
+      parameters:
+      - description: Create Todo
+        in: body
+        name: Todo
+        required: true
+        schema:
+          $ref: '#/definitions/reqres.TodoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create Todo
+      tags:
+      - Todo
+  /v1/todo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Todo By ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Delete Todo By ID
+      tags:
+      - Todo
+    get:
+      consumes:
+      - application/json
+      description: Get Todo By ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get Todo By ID
+      tags:
+      - Todo
+    put:
+      consumes:
+      - application/json
+      description: Update Todo By ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update Todo
+        in: body
+        name: Todo
+        required: true
+        schema:
+          $ref: '#/definitions/reqres.TodoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Update Todo By ID
+      tags:
+      - Todo
+swagger: "2.0"

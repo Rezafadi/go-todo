@@ -10,6 +10,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// CreateTodo godoc
+// @Summary Create Todo
+// @Description Create Todo
+// @Tags Todo
+// @Accept json
+// @Produce json
+// @Param Todo body reqres.TodoRequest true "Create Todo"
+// @Success 200
+// @Router /v1/todo [post]
 func CreateTodo(c echo.Context) error {
 	var input reqres.TodoRequest
 	if err := c.Bind(&input); err != nil {
@@ -28,6 +37,14 @@ func CreateTodo(c echo.Context) error {
 	})
 }
 
+// GetTodos godoc
+// @Summary Get Todos
+// @Description Get Todos
+// @Tags Todo
+// @Accept json
+// @Produce json
+// @Success 200
+// @Router /v1/todo [get]
 func GetTodos(c echo.Context) error {
 	data, err := repository.GetTodos()
 	if err != nil {
@@ -41,6 +58,15 @@ func GetTodos(c echo.Context) error {
 	})
 }
 
+// GetTodoByID godoc
+// @Summary Get Todo By ID
+// @Description Get Todo By ID
+// @Tags Todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Success 200
+// @Router /v1/todo/{id} [get]
 func GetTodoByID(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data, err := repository.GetTodoByID(id)
@@ -55,6 +81,16 @@ func GetTodoByID(c echo.Context) error {
 	})
 }
 
+// UpdateTodoByID godoc
+// @Summary Update Todo By ID
+// @Description Update Todo By ID
+// @Tags Todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Param Todo body reqres.TodoRequest true "Update Todo"
+// @Success 200
+// @Router /v1/todo/{id} [put]
 func UpdateTodoByID(c echo.Context) error {
 	var input reqres.TodoRequest
 	if err := c.Bind(&input); err != nil {
@@ -96,6 +132,15 @@ func UpdateTodoByID(c echo.Context) error {
 	})
 }
 
+// DeleteTodoByID godoc
+// @Summary Delete Todo By ID
+// @Description Delete Todo By ID
+// @Tags Todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Success 200
+// @Router /v1/todo/{id} [delete]
 func DeleteTodoByID(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data, err := repository.GetTodoByIDPlain(id)

@@ -2,6 +2,8 @@ package config
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 	"todo-list/app/models"
 
 	"gorm.io/driver/postgres"
@@ -11,13 +13,14 @@ import (
 var DB *gorm.DB
 
 func Database() *gorm.DB {
-	connStr := "postgresql://todo-app_owner:PCh3e4OFWnmU@ep-blue-frog-a1gn1oeo.ap-southeast-1.aws.neon.tech/todo-app?sslmode=require"
+	connStr := os.Getenv("DB_URL")
+	// fmt.Println("DB_URL: ", connStr)
 	DB, err := gorm.Open(postgres.Open(connStr), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 
-	enableDatabaseAutomigration := false
+	enableDatabaseAutomigration, _ := strconv.ParseBool(os.Getenv("ENABLE_DATABASE_AUTOMIGRATION"))
 	if enableDatabaseAutomigration {
 		err = DB.AutoMigrate(
 			&models.Todo{},
